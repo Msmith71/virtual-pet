@@ -6,16 +6,17 @@ public class VirtualPet {
 	double happiness;
 	double cleanliness;
 	
-	double eat = 20.0;
-	double drink = 20.0;
-	double play = 30.0;
+	double eat = 30.0;
+	double drink = 30.0;
+	double play = 40.0;
 	double clean = 50.0;
 	
+	double hungerDecay = 5;
 	boolean alive = true;
 	
 	//hunger decreases by 5
-	void updatetHunger() {
-		hunger -= 5;
+	void updateHunger() {
+		hunger -= hungerDecay;
 	}
 	//thirst decreases by 6.5
 	void updateThirst() {
@@ -23,17 +24,16 @@ public class VirtualPet {
 	}
 	
 	//Happiness decreases by 6
-	void updatetHappiness() {
+	void updateHappiness() {
 		happiness -= 6;
 	}
 	
 	//Cleanliness decreases by 20
 	void updateCleanliness() {
-		cleanliness -= 20;
+		cleanliness -= 10;
 	}
 	
-//////////////////////////////////////////////////////////////////////////////////////////
-
+/////////////////////////////////////////////////////////////////////////////////////////
 	
 	//pet eats
 	void hungerEat() {
@@ -53,8 +53,5 @@ public class VirtualPet {
 	void cleanlinessClean() {
 		cleanliness += clean;
 	}
-	
-
-	
 	
 }
