@@ -22,13 +22,11 @@ public class VirtualPet {
 	void updateThirst() {
 		thirst -= 6.5;
 	}
-	
 	//Happiness decreases by 6
 	void updateHappiness() {
 		happiness -= 6;
 	}
-	
-	//Cleanliness decreases by 20
+	//Cleanliness decreases by 10
 	void updateCleanliness() {
 		cleanliness -= 10;
 	}
@@ -43,12 +41,10 @@ public class VirtualPet {
 	void thirstDrink() {
 		thirst += drink;
 	}
-	
 	//pet plays
 	void happyPlay() {
 		happiness += play;
 	}
-	
 	//pet is cleaned
 	void cleanlinessClean() {
 		cleanliness += clean;

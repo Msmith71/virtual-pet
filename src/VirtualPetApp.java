@@ -20,12 +20,8 @@ public class VirtualPetApp {
 		
 		//pet name
 		System.out.println("Please choose a name for your pet.");
-		
 		String petName = input.nextLine();
-		
-		
-		
-		
+
 		while (status.alive) {
 			System.out.println("====================================================");
 			System.out.println("What would you like to do with " + petName);
@@ -36,10 +32,8 @@ public class VirtualPetApp {
 			System.out.println("5. [Nothing]"); 
 			System.out.println("====================================================");
 			
-			
+			//DEATH
 			int deathStrike = 0;
-
-			
 			if (belly.hunger <= 0) {
 				deathStrike += 1;
 			}
@@ -53,48 +47,44 @@ public class VirtualPetApp {
 				deathStrike += 1;
 			}
 			if (deathStrike == 3) {
-				System.out.println("Due to neglect and  miscare " + petName + " has starved to death.");
-				
-				System.out.println("GAME OVER");
-
-				
+				System.out.println("Due to neglect and  miscare " + petName + " has died. How unfortunate.");
+				System.out.println("============{GAME OVER}============");
+				status.alive = false;
+				System.exit(0);
 			}
 			
+			//Warnings
+			if (belly.hunger < 30) {
+				System.out.println(petName + " is hungry and needs to eat soon!");
+			}
+			if (water.thirst < 30) {
+				System.out.println(petName + " is thirsty and needs to drink soon!");
+			}
+			if (mood.happiness <= 20) {
+				System.out.println(petName + " looks sad, maybe you should cheer them up!?");
+			}
+			if (hygiene.cleanliness <= 25) {
+				System.out.println(petName + " smells really bad, you should probably give them a bath.");
+			}
+			
+			belly.updateHunger();
+			water.updateThirst();
+			mood.updateHappiness();
+			hygiene.updateCleanliness();
+			
 			int choice = input.nextInt(); 
-
-
+			
 			switch (choice) {
-
 	
 				//feed
 				case 1:
 					if (choice == 1 && belly.hunger >= 100 ) {
 						System.out.println(petName + " is full, and doesn't want to eat.");
-						belly.updateHunger();
-						water.updateThirst();
-						mood.updateHappiness();
-						hygiene.updateCleanliness();
 					} else if (choice == 1) {
 						belly.hungerEat();
 						hygiene.cleanliness -= 5;
 						System.out.println("You give " + petName + " a tastey treat!");
 						System.out.println(petName + "'s current hunger is now " + belly.hunger);
-						belly.updateHunger();
-						water.updateThirst();
-						mood.updateHappiness();
-						hygiene.updateCleanliness();
-					if (belly.hunger < 30) {
-							System.out.println(petName + " is hungry and needs to eat soon!");
-						}
-						if (water.thirst < 30) {
-							System.out.println(petName + " is thirsty and needs to drink soon!");
-						}
-						if (mood.happiness <= 20) {
-							System.out.println(petName + " looks sad, maybe you should cheer them up!?");
-						}
-						if (hygiene.cleanliness <= 25) {
-							System.out.println(petName + " smells really bad, you should probably give them a bath.");
-						}
 					}
 					break;
 					
@@ -102,31 +92,11 @@ public class VirtualPetApp {
 				case 2:
 					if (choice == 2 && water.thirst >= 100) {
 						System.out.println(petName + " is hydrated, and doesn't want to drink.");
-						belly.updateHunger();
-						water.updateThirst();
-						mood.updateHappiness();
-						hygiene.updateCleanliness();
 					} else if (choice == 2) {
 						water.thirstDrink();
 						hygiene.cleanliness -= 3;
 						System.out.println("You give " + petName + " a bowl of water!");
 						System.out.println(petName + "'s current thirst is now " + water.thirst);
-						belly.updateHunger();
-						water.updateThirst();
-						mood.updateHappiness();
-						hygiene.updateCleanliness();
-						if (belly.hunger < 30) {
-							System.out.println(petName + " is hungry and needs to eat soon!");
-						}
-						if (water.thirst < 30) {
-							System.out.println(petName + " is thirsty and needs to drink soon!");
-						}
-						if (mood.happiness <= 20) {
-							System.out.println(petName + " looks sad, maybe you should cheer them up!?");
-						}
-						if (hygiene.cleanliness <= 25) {
-							System.out.println(petName + " smells really bad, you should probably give them a bath.");
-						}
 					}
 					break;
 					
@@ -134,10 +104,6 @@ public class VirtualPetApp {
 				case 3:
 					if (choice == 3 && mood.happiness >= 100) {
 						System.out.println(petName + " does'nt feel like playing right now.");
-						belly.updateHunger();
-						water.updateThirst();
-						mood.updateHappiness();
-						hygiene.updateCleanliness();
 					} else if (choice == 3) {
 						mood.happyPlay();
 						belly.hunger -= 5;
@@ -145,23 +111,6 @@ public class VirtualPetApp {
 						hygiene.cleanliness -= 2;
 						System.out.println("You play with " + petName + "!");
 						System.out.println(petName + "'s current happiness is now " + mood.happiness);
-						belly.updateHunger();
-						water.updateThirst();
-						mood.updateHappiness();
-						hygiene.updateCleanliness();
-						if (belly.hunger < 30) {
-							System.out.println(petName + " is hungry and needs to eat soon!");
-						}
-						if (water.thirst < 30) {
-							System.out.println(petName + " is thirsty and needs to drink soon!");
-						}
-						if (mood.happiness <= 20) {
-							System.out.println(petName + " looks sad, maybe you should cheer them up!?");
-						}
-						if (hygiene.cleanliness <= 25) {
-							System.out.println(petName + " smells really bad, you should probably give them a bath.");
-						}
-						
 					}
 					break;
 					
@@ -169,52 +118,19 @@ public class VirtualPetApp {
 				case 4:
 					if (choice == 4 && hygiene.cleanliness >= 100) {
 						System.out.println(petName + " is already as clean as possible. Any more and they might lose some fur.");
-						belly.updateHunger();
-						water.updateThirst();
-						mood.updateHappiness();
-						hygiene.updateCleanliness();
 					}
 				else if (choice == 4) {
 						hygiene.cleanlinessClean();
 						mood.happiness -= 3;
 						System.out.println("You give " + petName + " a hot bathe!");
 						System.out.println(petName + "'s cleanliness is " + hygiene.cleanliness);
-						belly.updateHunger();
-						water.updateThirst();
-						mood.updateHappiness();
-						hygiene.updateCleanliness();
-						if (belly.hunger < 30) {
-							System.out.println(petName + " is hungry and needs to eat soon!");
-						}
-						if (water.thirst < 30) {
-							System.out.println(petName + " is thirsty and needs to drink soon!");
-						}
-						if (mood.happiness <= 20) {
-							System.out.println(petName + " looks sad, maybe you should cheer them up!?");
-						}
-						if (hygiene.cleanliness <= 25) {
-							System.out.println(petName + " smells really bad, you should probably give them a bath.");
-						}
 					}
+					break;
+					
+				//nothing
 				case 5:
 					if (choice == 5) {
 						System.out.println("You do nothing.");
-						belly.updateHunger();
-						water.updateThirst();
-						mood.updateHappiness();
-						hygiene.updateCleanliness();
-						if (belly.hunger < 30) {
-							System.out.println(petName + " is hungry and needs to eat soon!");
-						}
-						if (water.thirst < 30) {
-							System.out.println(petName + " is thirsty and needs to drink soon!");
-						}
-						if (mood.happiness <= 20) {
-							System.out.println(petName + " looks sad, maybe you should cheer them up!?");
-						}
-						if (hygiene.cleanliness <= 25) {
-							System.out.println(petName + " smells really bad, you should probably give them a bath.");
-						}
 					}
 					break;
 	
